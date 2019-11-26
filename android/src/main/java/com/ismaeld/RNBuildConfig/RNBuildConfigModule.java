@@ -82,16 +82,21 @@ public class RNBuildConfigModule extends ReactContextBaseJavaModule {
     @Override
     public Map<String, Object> getConstants() {
 
-        Field[] fields = buildConfigClass.getDeclaredFields();
-        for (Field f : fields) {
-            try {
-                this.constants.put(f.getName(), f.get(null));
-            } catch (IllegalAccessException e) {
-                Log.d(NAME, "Could not access BuildConfig field " + f.getName());
+        if(this.constants.isEmpty()) {
+
+            Field[] fields = buildConfigClass.getDeclaredFields();
+            for (Field f : fields) {
+                try {
+                    this.constants.put(f.getName(), f.get(null));
+                } catch (IllegalAccessException e) {
+                    Log.d(NAME, "Could not access BuildConfig field " + f.getName());
+                }
             }
+
         }
 
         return this.constants;
 
     }
+    
 }
