@@ -22,6 +22,11 @@ public class RNBuildConfigModule extends ReactContextBaseJavaModule {
     public String getName() {
         return NAME;
     }
+    
+    @ReactMethod
+    public Map<String, Object> getConfig() {
+        return getConstants();
+    }
 
     @Override
     public Map<String, Object> getConstants() {
