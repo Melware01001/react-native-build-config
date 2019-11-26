@@ -1,7 +1,7 @@
 declare const _default: {
-  getFlavor: () => string;
-  getVersionName: () => string;
-  getVersionCode: () => string;
+  getFlavor: () => Promise<string>;
+  getVersionName: () => Promise<string>;
+  getVersionCode: () => Promise<string>;
 };
 
 export default _default;
