@@ -5,6 +5,7 @@ import android.util.Log;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.Promise;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,53 +31,65 @@ public class RNBuildConfigModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public String getFlavor() {
+    public void getFlavor(Promise p) {
+
+        String value = "";
 
         try {
 
-            return this.constants.get("FLAVOR").toString();
+            value = this.constants.get("FLAVOR").toString();
 
         } catch (Exception e) {
 
-            return null;
+            Log.d(NAME, e.getMessage());
 
         }
+
+        p.resolve(value);
 
     }
 
     @ReactMethod
-    public String getVersionName() {
+    public void getVersionName(Promise p) {
+
+        String value = "";
 
         try {
 
-            return this.constants.get("VERSION_NAME").toString();
+            value = this.constants.get("VERSION_NAME").toString();
 
         } catch (Exception e) {
 
-            return null;
+            Log.d(NAME, e.getMessage());
 
         }
+
+        p.resolve(value);
 
     }
 
     @ReactMethod
-    public String getVersionCode() {
+    public void getVersionCode(Promise p) {
+
+        String value = "";
 
         try {
 
-            return this.constants.get("VERSION_CODE").toString();
+            value = this.constants.get("VERSION_CODE").toString();
 
         } catch (Exception e) {
 
-            return null;
+            Log.d(NAME, e.getMessage());
 
         }
+
+        p.resolve(value);
 
     }
 
     @ReactMethod
-    public Map<String, Object> getConfig() {
-        return this.constants;
+    public void getConfig(Promise p) {
+        p.resolve(this.constants);
     }
 
     @Override
@@ -98,5 +111,4 @@ public class RNBuildConfigModule extends ReactContextBaseJavaModule {
         return this.constants;
 
     }
-    
 }
